@@ -1,0 +1,27 @@
+group "org.graypc"
+version "1.0"
+
+apply plugin: "java"
+apply plugin: "application"
+
+sourceCompatibility = 1.5
+mainClassName = "org.graypc.Main"
+
+jar {
+	from { 
+		configurations.compile.collect { 
+			it.isDirectory() ? it : zipTree(it)
+		} 
+	}
+
+    manifest.attributes("Main-Class": "org.graypc.Main")
+    baseName = "PasswordKeeper"
+    //version = "1.0"
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+}
